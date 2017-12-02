@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "C:\\Users\\Nikhil Bansal\\AndroidStudioProjects\\JCT\\rtp\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-port\\values-port.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 55,
+                    "endOffset": 106
+                },
+                "from": {
+                    "file": "C:\\Users\\Nikhil Bansal\\.android\\build-cache\\c0deb506de507ad38dc887e0e06aec9a26e0ec97\\output\\res\\values-port\\values-port.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 276,
+                        "endColumn": 55,
+                        "endOffset": 327
+                    }
+                }
+            }
+        ]
+    }
+]

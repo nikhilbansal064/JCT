@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingRight="@dimen/sixteen_dp"
+    android:paddingLeft="@dimen/sixteen_dp"
+    android:background="@drawable/background_3"
+    android:paddingTop="@dimen/hundred_dp">
+    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/car"
+        android:layout_marginBottom="@dimen/eight_dp"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/discover_and_buy"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/thirty_sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/japan_used_cars"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/thirty_sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/btn_fb_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/car"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="@dimen/twenty_five_dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/or_use_email"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/twenty_sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <Button
+            android:id="@+id/btn_login_login_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorTheme"
+            android:layout_marginRight="@dimen/eight_dp"/>
+
+        <Button
+            android:id="@+id/btn_register_login_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="register"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorTheme"
+            android:layout_marginLeft="@dimen/eight_dp"/>
+    </LinearLayout>
+
+</LinearLayout>

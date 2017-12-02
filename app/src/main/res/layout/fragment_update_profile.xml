@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background4"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="25sp"
+                    android:textColor="@android:color/black"
+                    android:text="Update Profile"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="12dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_name_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4"
+                    android:layout_marginBottom="5dp">
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spinner_salutation"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:spinnerMode="dropdown"
+                        android:background="@color/colorGrayBg"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/register_name_hint"
+                        android:layout_marginLeft="12dp"
+                        android:background="@color/colorGrayBg"
+                        android:padding="@dimen/eight_dp"/>
+                </LinearLayout>
+
+
+                <EditText
+                    android:id="@+id/et_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:hint="Company"
+                    android:imeOptions="actionNext"
+                    android:layout_marginBottom="5dp"/>
+
+                <EditText
+                    android:id="@+id/et_address_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:imeOptions="actionNext"
+                    android:layout_marginBottom="5dp"
+                    android:padding="4dp"
+                    android:hint="Address"/>
+
+                <EditText
+                    android:id="@+id/et_address_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:imeOptions="actionNext"
+                    android:layout_marginBottom="5dp"
+                    android:padding="4dp"
+                    android:hint="Address"/>
+
+                <EditText
+                    android:id="@+id/et_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:hint="City"/>
+
+                <EditText
+                    android:id="@+id/et_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:hint="State"/>
+
+                <EditText
+                    android:id="@+id/et_zip_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:hint="Zip Code"/>
+
+                <EditText
+                    android:id="@+id/et_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:hint="Country"/>
+
+                <EditText
+                    android:id="@+id/et_shipping_country_port"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:hint="Shipping Country Port"/>
+
+                <EditText
+                    android:id="@+id/et_login_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:hint="Login Id"/>
+
+                <EditText
+                    android:id="@+id/et_alternate_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:hint="Alternate Email"/>
+
+                <EditText
+                    android:id="@+id/et_telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+                    android:hint="Telephone"/>
+
+                <EditText
+                    android:id="@+id/et_alternate_telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:inputType="number"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:hint="Alternate Telephone"/>
+
+                <EditText
+                    android:id="@+id/et_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorGrayBg"
+                    android:padding="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:hint="Mobile"/>
+
+                <CheckBox android:id="@+id/cb_suscribe_newsletter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Like to Suscribe Newsletter"
+                    android:background="@color/colorGrayBg"
+                    android:padding="5dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <Button
+                    android:id="@+id/btn_update_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/update_btn"
+                    android:layout_marginBottom="12dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

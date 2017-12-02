@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">JCT</string>
+    <string name="font_unavailable_err">Requested Font is not available.</string>
+
+    <!--fb integration string-->
+    <string name="facebook_app_id">1970525233202982</string>
+    <string name="fb_login_protocol_scheme">fb1970525233202982</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <!--fragment_login registration screen-->
+    <string name="discover_and_buy">Discover &amp; Buy</string>
+    <string name="japan_used_cars">Japan Used Cars</string>
+    <string name="or_use_email">- or use email -</string>
+
+    <!--login screen-->
+    <string name="login_label">Login</string>
+    <string name="login_id_hint">Login Id</string>
+    <string name="password_hint">Password</string>
+
+
+    <!--registration screen-->
+    <string name="register_label">Register</string>
+    <string name="register_name_hint">Name</string>
+    <string name="register_country_hint">Country</string>
+    <string name="register_email_hint">Email</string>
+
+    <string-array name="salutation">
+    <item>Mr.</item>
+    <item>Mrs.</item>
+    <item>Ms.</item>
+    </string-array>
+
+    <!--update screens-->
+    <string name="update_login_id_label">Update Login Id</string>
+    <string name="update_password_label">Update Password</string>
+    <string name="forgot_password_label">Forgot Password</string>
+    <string name="new_login_id_hint">New Login Id</string>
+    <string name="new_confirm_login_id_hint">Confirm New Login Id</string>
+    <string name="current_password_hint">Current Password</string>
+    <string name="confirm_new_password_hint">Confirm New Password</string>
+    <string name="new_password_hint">New Password</string>
+    <string name="update">Update</string>
+    <string name="ok_text">OK</string>
+    <string name="cancel_text">CANCEL</string>
+
+
+    <!--forgot password screen-->
+    <string name="reset_password">Reset Password</string>
+    <string name="forgot_password_instruction">Enter email id used to register at</string>
+    <string name="jct_website">JapaneseCarTrade.com</string>
+
+
+    <!--error messages-->
+    <string name="empty_login_id_error_msg">Login Id is required</string>
+    <string name="empty_password_id_error_msg">Password is required</string>
+    <string name="empty_new_password_id_error_msg">New Password is required</string>
+    <string name="empty_confirm_password_id_error_msg">Confirm Password is required</string>
+    <string name="empty_name_error_msg">Name is required</string>
+    <string name="empty_email_error_msg">Email is required</string>
+    <string name="valid_email_error_msg">Provide valid email id</string>
+    <string name="empty_country_error_msg">Country is required</string>
+    <string name="login_id_mismatch_error">New login id and confirm login id mismatched.</string>
+    <string name="password_mismatch_error">New and confirm password mismatched.</string>
+
+
+</resources>

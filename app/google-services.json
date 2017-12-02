@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "247955783544",
+    "firebase_url": "https://jctapp-83308.firebaseio.com",
+    "project_id": "jctapp-83308",
+    "storage_bucket": "jctapp-83308.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247955783544:android:d2fd2eeb7b3feefc",
+        "android_client_info": {
+          "package_name": "com.example.nikhilbansal.jct"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247955783544-8dcg0cpf2945ljic6k6rrp5066q12lsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdBgt3himmKfsIlQt7jqdZDqnqxd5K324"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
