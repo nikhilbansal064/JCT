@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.nikhilbansal.jct.BaseFragment;
+import com.example.nikhilbansal.jct.MainActivity;
 import com.example.nikhilbansal.jct.R;
 import com.example.nikhilbansal.jct.login.LoginFragment;
 import com.example.nikhilbansal.jct.registration.RegistrationFragment;
@@ -36,7 +37,13 @@ public class LoginRegistrationFragment extends BaseFragment implements View.OnCl
         view = inflater.inflate(R.layout.fragment_login_registration, container, false);
 
         initViews();
+        setProperties();
         return view;
+    }
+
+    private void setProperties() {
+        setTitle("JAPANESE CAR TRADE.COM");
+        //setBackButton();
     }
 
     private void initViews() {
@@ -56,8 +63,11 @@ public class LoginRegistrationFragment extends BaseFragment implements View.OnCl
                 break;
 
             case R.id.btn_register_login_reg :
-                UpdateProfileFragment registrationFragment = UpdateProfileFragment.newInstance();
-                FragmentUtils.replaceFragment(getActivity(), registrationFragment, UpdateProfileFragment.class.getSimpleName(), true );
+                RegistrationFragment registrationFragment = (RegistrationFragment) getFragmentManager().findFragmentByTag(RegistrationFragment.class.getSimpleName());
+                if(null == registrationFragment){
+                    registrationFragment = RegistrationFragment.newInstance();
+                }
+                FragmentUtils.replaceFragment(getActivity(), registrationFragment, RegistrationFragment.class.getSimpleName(), true );
                 break;
 
             default:

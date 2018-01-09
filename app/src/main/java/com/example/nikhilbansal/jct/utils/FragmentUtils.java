@@ -21,7 +21,6 @@ public class FragmentUtils {
             FragmentManager fragmentManager = activity.getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction .add(R.id.fragment_container, fragment, fragmentId);
-            transaction.addToBackStack(fragmentId);
             if(addToBackStack){
                 transaction.addToBackStack(fragmentId);
             }

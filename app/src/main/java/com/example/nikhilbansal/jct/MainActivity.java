@@ -1,6 +1,7 @@
 package com.example.nikhilbansal.jct;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
@@ -9,13 +10,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.nikhilbansal.jct.loginRegistration.LoginRegistrationFragment;
+import com.example.nikhilbansal.jct.utils.FragmentUtils;
 import com.example.nikhilbansal.jct.utils.SharePreferenceData;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Toolbar mToolbar;
     private DrawerLayout drawer;
@@ -27,31 +31,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initializeViews();
         setProperties();
 
-        navigationView.getMenu().clear();
-        navigationView.inflateMenu(R.menu.guest_user_navigation_menu);
-
-//        //load navigation menu according to guest or logged in user
-//        if(isUserLoggedIn()){
-//            loadNavigationMenu(R.menu.logged_in_user_navigation_menu);
-//        }else {
-//            loadNavigationMenu(R.menu.guest_user_navigation_menu);
-//        }
-
         //load home fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        HomeFragment homeFragment = HomeFragment.newInstance();
+        FragmentUtils.addFragment(this, homeFragment, HomeFragment.class.getName(), true);
 
-        LoginRegistrationFragment fragment = LoginRegistrationFragment.newInstance();
-        fragmentTransaction.add(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
-
+        //load navigation menu according to guest or logged in user
+        if(isUserLoggedIn()){
+            loadNavigationMenu(R.menu.logged_in_user_navigation_menu);
+        }else {
+            loadNavigationMenu(R.menu.guest_user_navigation_menu);
+        }
     }
 
     public static  void loadNavigationMenu(int menu) {
         navigationView.getMenu().clear();
         navigationView.inflateMenu(menu);
-
-
     }
 
     public boolean isUserLoggedIn(){
@@ -79,13 +73,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
      */
     private void setProperties() {
         setSupportActionBar(mToolbar);
-
+        navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        toggle.setDrawerIndicatorEnabled(true);
 
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
@@ -101,17 +95,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //check if user logged in
-        //if user already logged in show MY ACCOUNT in drawer
-        //else show log in in drawer
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        return false;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up button, as long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -123,16 +113,37 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+
+    public void setNavigationIcon(int navigationIcon, final String navigation) {
+        if(mToolbar != null){
+            mToolbar.setNavigationIcon(navigationIcon);
+
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (navigation){
+                        case "BACK":
+                            onBackPressed();
+                            break;
+                    }
+                }
+            });
+        }
+    }
+
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_my_account:
+                //go to user account
+                break;
 
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+            case R.id.nav_log_in_or_register:
+                //load loginRegistration fragment
+                FragmentUtils.addFragment(this, LoginRegistrationFragment.newInstance(), LoginRegistrationFragment.class.getSimpleName(), true);
+                break;
+        }
+        drawer.closeDrawers();
         return true;
     }
 }

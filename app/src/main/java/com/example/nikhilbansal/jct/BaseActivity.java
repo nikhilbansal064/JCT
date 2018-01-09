@@ -25,12 +25,6 @@ public class BaseActivity extends RunTimePermissionActivity {
     }
 
     public void setScreenTitle(String title){
-        if(getSupportActionBar() != null) {
-            SpannableString spannableString = new SpannableString(title);
-            spannableString.setSpan(FontFactory.getFont(Constants.KEY_FONT_AWESOME), 0, spannableString.length(),
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            getSupportActionBar().setTitle(spannableString);
-        }
-    }
 
+    }
 }
