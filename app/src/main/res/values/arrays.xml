@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="make_list_ids">
+        <item>@drawable/toyota</item>
+    </integer-array>
+
+    <integer-array name="type_list_ids">
+        <item>@drawable/bikes</item>
+        <item>@drawable/boats</item>
+        <item>@drawable/bus</item>
+        <item>@drawable/bycle</item>
+        <item>@drawable/convertable</item>
+        <item>@drawable/coups</item>
+        <item>@drawable/escort</item>
+        <item>@drawable/hatchback</item>
+        <item>@drawable/loading_truck</item>
+        <item>@drawable/machinery</item>
+        <item>@drawable/muv</item>
+        <item>@drawable/pickup_truck</item>
+        <item>@drawable/sedan_car</item>
+        <item>@drawable/spare</item>
+        <item>@drawable/sport_car</item>
+        <item>@drawable/suv</item>
+        <item>@drawable/tractor</item>
+        <item>@drawable/van</item>
+        <item>@drawable/wagon</item>
+    </integer-array>
+
+</resources>

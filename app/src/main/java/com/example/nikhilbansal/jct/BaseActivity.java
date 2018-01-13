@@ -1,6 +1,7 @@
 package com.example.nikhilbansal.jct;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 
@@ -8,7 +9,7 @@ import com.example.nikhilbansal.jct.constant.Constants;
 import com.example.nikhilbansal.jct.utils.FontFactory;
 import com.ranosys.rtp.RunTimePermissionActivity;
 
-public class BaseActivity extends RunTimePermissionActivity {
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
