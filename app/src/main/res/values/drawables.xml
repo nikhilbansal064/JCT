@@ -5,4 +5,12 @@
     <item name="ic_menu_manage" type="drawable">@android:drawable/ic_menu_manage</item>
     <item name="ic_menu_share" type="drawable">@android:drawable/ic_menu_share</item>
     <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
+    <item name="Toyota" type="drawable">@drawable/toyota</item>
+    <item name="Nissan" type="drawable">@drawable/nissan</item>
+    <item name="Honda" type="drawable">@drawable/honda</item>
+    <item name="Mitsubishi" type="drawable">@drawable/mitsubishi</item>
+    <item name="Suzuki" type="drawable">@drawable/suzuki</item>
+    <item name="Isuzu" type="drawable">@drawable/isuzu</item>
+    <item name="Subaru" type="drawable">@drawable/subaru</item>
+    <item name="Hino" type="drawable">@drawable/hino</item>
 </resources>

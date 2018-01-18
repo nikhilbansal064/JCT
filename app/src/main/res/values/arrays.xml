@@ -6,7 +6,7 @@
     </integer-array>
 
     <integer-array name="type_list_ids">
-        <item>@drawable/bikes</item>
+        <item name="abc">@drawable/bikes</item>
         <item>@drawable/boats</item>
         <item>@drawable/bus</item>
         <item>@drawable/bycle</item>

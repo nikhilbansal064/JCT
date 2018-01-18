@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.nikhilbansal.jct.BaseFragment;
+import com.example.nikhilbansal.jct.HomeFragment;
 import com.example.nikhilbansal.jct.R;
 import com.example.nikhilbansal.jct.UserInfo;
 import com.example.nikhilbansal.jct.constant.ApiConstants;
@@ -20,6 +21,8 @@ import com.example.nikhilbansal.jct.login.model.LoginResponse;
 import com.example.nikhilbansal.jct.registration.RegistrationFragment;
 import com.example.nikhilbansal.jct.utils.DialogUtils;
 import com.example.nikhilbansal.jct.utils.FragmentUtils;
+import com.example.nikhilbansal.jct.utils.SharePreferenceData;
+import com.google.gson.Gson;
 
 /**
  * Created by Nikhil Bansal on 28-10-2017.
@@ -133,7 +136,22 @@ public class LoginFragment extends BaseFragment implements loginInterface.ILogin
     @Override
     public void loginSuccess(LoginResponse response) {
         hideLoading();
+        Gson gson = new Gson();
+        String userDataStr = gson.toJson(response);
+        //save data to shared pref
+        saveUserData(userDataStr);
         //go to home page
+        FragmentUtils.addFragment(getActivity(), HomeFragment.newInstance(), HomeFragment.class.getSimpleName(), true);
+
+        //change content of drawer
+
+    }
+
+    private void saveUserData(String userData) {
+        SharePreferenceData sp = SharePreferenceData.getInstance();
+        sp.clearAll();
+        sp.saveBooleanValue(sp.KEY_USER_LOGGED_IN, true);
+        sp.saveString(sp.KEY_USER_DATA, userData);
     }
 
     @Override

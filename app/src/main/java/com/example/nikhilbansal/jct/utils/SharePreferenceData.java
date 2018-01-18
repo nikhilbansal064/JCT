@@ -16,6 +16,7 @@ public class SharePreferenceData {
     private static SharePreferenceData sharedPreferenceData;
 
     public static final String KEY_USER_ID = "user id";
+    public static final String KEY_USER_DATA = "user id";
     public static final String KEY_USER_LOGGED_IN = "user logged in";
 
     private SharePreferenceData(){}
@@ -37,13 +38,13 @@ public class SharePreferenceData {
     public void saveString(String key, String value){
         SharedPreferences.Editor editor = getEditor();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public void saveBooleanValue(String key, boolean value){
         SharedPreferences.Editor editor = getEditor();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public boolean getBooleanValue(String key){
@@ -60,8 +61,6 @@ public class SharePreferenceData {
     public void clearAll(){
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.clear();
-        editor.commit();
+        editor.apply();
     }
-
-
 }

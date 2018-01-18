@@ -1,280 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/ll_container"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/background_1">
 
-        <GridLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/home_search_bar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
-            android:columnCount="4"
-            android:useDefaultMargins="true"
-            android:alignmentMode="alignBounds"
-            android:background="@drawable/background_1">
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorWhite"
+            android:drawableRight="@drawable/search"
+            android:hint="Search Cars"
+            android:padding="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/make_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/search"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_columnSpan="4"
-                android:padding="6dp"
-                android:background="@color/colorWhite"
-                android:text="Search cars"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="4"
-                android:text="SEARCH BY MAKE"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="center_horizontal"/>
-
-            <ImageView
-                android:id="@+id/make_icon_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-
-            <ImageView
-                android:id="@+id/make_icon_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/nissan"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-
-            <ImageView
-                android:id="@+id/make_icon_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/honda"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"/>
-
-            <ImageView
-                android:id="@+id/make_icon_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/mitsubishi"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"/>
-
-            <ImageView
-                android:id="@+id/make_icon_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/subaru"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:id="@+id/make_icon_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/suzuki"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:id="@+id/make_icon_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/hino"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:id="@+id/make_icon_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/isuzu"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:id="@+id/btn_view_all_make"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_columnSpan="4"
-                android:src="@drawable/view_all"
-                android:layout_gravity="center"/>
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/make_label"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
-            android:columnCount="4"
-            android:useDefaultMargins="true"
-            android:alignmentMode="alignBounds"
-            android:background="@color/colorGrayBg">
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="SEARCH BY MAKE"
+            app:layout_constraintBottom_toTopOf="@+id/make_grid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_search_bar" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="4"
-                android:text="SEARCH BY TYPE"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="center_horizontal"/>
-
-            <ImageView
-                android:id="@+id/type_icon_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-
-            <ImageView
-                android:id="@+id/type_icon_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-
-            <ImageView
-                android:id="@+id/type_icon_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"/>
-
-            <ImageView
-                android:id="@+id/type_icon_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"/>
-
-            <ImageView
-                android:id="@+id/btn_view_all_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_columnSpan="4"
-                android:src="@drawable/view_all"
-                android:layout_gravity="center"/>
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/btn_make_view_all"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
-            android:columnCount="4"
-            android:useDefaultMargins="true"
-            android:alignmentMode="alignBounds"
-            android:background="@color/colorWhite">
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/view_all"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/make_grid" />
 
-            <ImageView
-                android:id="@+id/btn_quick_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_columnSpan="4"
-                android:src="@drawable/quick_search"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="4"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="RECENTLY VIEWED"
-                android:layout_gravity="center_horizontal"/>
-
-            <ImageView
-                android:id="@+id/recently_viewed_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-
-            <ImageView
-                android:id="@+id/recently_viewed_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-
-            <ImageView
-                android:id="@+id/recently_viewed_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"/>
-
-            <ImageView
-                android:id="@+id/recently_viewed_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:padding="10dp"
-                android:src="@drawable/toyota"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"/>
-
-        </GridLayout>
+        <GridView
+            android:id="@+id/make_grid"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:background="@color/colorGrayBg"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:numColumns="4"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            app:layout_constraintBottom_toTopOf="@+id/btn_make_view_all"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/make_label" />
 
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

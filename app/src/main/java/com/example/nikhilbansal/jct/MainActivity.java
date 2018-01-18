@@ -18,12 +18,17 @@ import android.view.View;
 import com.example.nikhilbansal.jct.loginRegistration.LoginRegistrationFragment;
 import com.example.nikhilbansal.jct.utils.FragmentUtils;
 import com.example.nikhilbansal.jct.utils.SharePreferenceData;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Toolbar mToolbar;
     private DrawerLayout drawer;
     private static NavigationView navigationView;
+    public static StockId stockIds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +36,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initializeViews();
         setProperties();
 
+        //get stock list from Assets
+        ParseJsonFromAsset();
         //load home fragment
         HomeFragment homeFragment = HomeFragment.newInstance();
         FragmentUtils.addFragment(this, homeFragment, HomeFragment.class.getName(), true);
@@ -40,6 +47,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             loadNavigationMenu(R.menu.logged_in_user_navigation_menu);
         }else {
             loadNavigationMenu(R.menu.guest_user_navigation_menu);
+        }
+    }
+
+    private void ParseJsonFromAsset() {
+
+        try {
+            InputStream is = getAssets().open("stock_id.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String stockStr = new String(buffer, "UTF-8");
+            Gson gson = new Gson();
+            stockIds = gson.fromJson(stockStr, StockId.class);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

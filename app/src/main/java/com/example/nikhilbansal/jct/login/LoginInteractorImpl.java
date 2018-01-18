@@ -4,6 +4,7 @@ import com.example.nikhilbansal.jct.ApiCallback;
 import com.example.nikhilbansal.jct.UserInfo;
 import com.example.nikhilbansal.jct.api.ApiManagement;
 import com.example.nikhilbansal.jct.login.model.LoginRequest;
+import com.example.nikhilbansal.jct.login.model.LoginResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +33,11 @@ public class LoginInteractorImpl implements loginInterface.ILoginInteractor {
         ApiManagement.login(requestMap, new ApiCallback() {
             @Override
             public void onSuccess(Object response) {
-                if(null != response && response instanceof UserInfo) {
+                if(null != response && response instanceof LoginResponse) {
                     //save necessary information
                     callback.onSuccess(response);
+                }else {
+                    callback.onFailure("something went wrong");
                 }
             }
 
