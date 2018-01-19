@@ -2,15 +2,12 @@ package com.example.nikhilbansal.jct;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +25,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private Toolbar mToolbar;
     private DrawerLayout drawer;
     private static NavigationView navigationView;
-    public static StockId stockIds;
+    public static VehicleIds vehicleMakeIds;
+    public static VehicleIds vehicleTypeIds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +49,26 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void ParseJsonFromAsset() {
-
+        InputStream inputStream;
+        int size;
+        byte[] buffer;
+        Gson gson = new Gson();
         try {
-            InputStream is = getAssets().open("stock_id.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String stockStr = new String(buffer, "UTF-8");
-            Gson gson = new Gson();
-            stockIds = gson.fromJson(stockStr, StockId.class);
+            //parse vehicle by make
+            inputStream = getAssets().open("vehicle_make_ids");
+            size = inputStream.available();
+            buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            vehicleMakeIds = gson.fromJson(new String(buffer, "UTF-8"), VehicleIds.class);
+
+            //parse vehicle by make
+            inputStream = getAssets().open("vehicle_type_ids");
+            size = inputStream.available();
+            buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            vehicleTypeIds = gson.fromJson(new String(buffer, "UTF-8"), VehicleIds.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

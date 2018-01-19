@@ -9,21 +9,21 @@ import java.util.ArrayList;
  * Created by Nikhil Bansal on 19-01-2018.
  */
 
-public class StockId {
+public class VehicleIds {
 
     @SerializedName("list")
     @Expose
-    private ArrayList<StockItem> list;
+    private ArrayList<vehicle> list;
 
-    public ArrayList<StockItem> getList() {
+    public ArrayList<vehicle> getList() {
         return list;
     }
 
-    public void setList(ArrayList<StockItem> list) {
+    public void setList(ArrayList<vehicle> list) {
         this.list = list;
     }
 
-    public class StockItem {
+    public class vehicle {
         @SerializedName("id")
         @Expose
         private String id;

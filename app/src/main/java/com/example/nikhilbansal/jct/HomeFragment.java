@@ -2,10 +2,8 @@ package com.example.nikhilbansal.jct;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.nikhilbansal.jct.utils.FragmentUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nikhil Bansal on 09-01-2018.
@@ -27,9 +25,14 @@ import java.util.ArrayList;
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private ImageView btnViewAllMake, btnViewAllType, btnQuickSearch;
-    private GridView makeGrid;
-
+    private GridView makeGrid, typeGrid;
     private View view;
+
+    private static final String VEHICLE_BY_MAKE = "make";
+    private static final String VEHICLE_BY_TYPE = "type";
+    private static final int HOME_TYPE_VEHICLE_COUNT = 4;
+    private static final int HOME_MAKE_VEHICLE_COUNT = 8;
+
 
     public static HomeFragment newInstance(){
         return new HomeFragment();
@@ -42,8 +45,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         initViews();
         setProperties();
 
-        if(null != MainActivity.stockIds && MainActivity.stockIds.getList().size() > 0){
-            makeGrid.setAdapter(new StockAdapter());
+        if(null != MainActivity.vehicleMakeIds && MainActivity.vehicleMakeIds.getList().size() > 0){
+            makeGrid.setAdapter(new vehicleIdsAdapter(MainActivity.vehicleMakeIds.getList().subList(0, HOME_MAKE_VEHICLE_COUNT)));
+        }
+
+        if(null != MainActivity.vehicleTypeIds && MainActivity.vehicleTypeIds.getList().size() > 0){
+            typeGrid.setAdapter(new vehicleIdsAdapter(MainActivity.vehicleTypeIds.getList().subList(0, HOME_TYPE_VEHICLE_COUNT)));
         }
 
         makeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,48 +60,64 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             }
         });
 
+        typeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), "type item clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
 
     private void setProperties() {
         btnViewAllMake.setOnClickListener(this);
+        btnViewAllType.setOnClickListener(this);
     }
 
     private void initViews() {
         btnViewAllMake = view.findViewById(R.id.btn_make_view_all);
+        btnViewAllType = view.findViewById(R.id.btn_type_view_all);
         makeGrid = view.findViewById(R.id.make_grid);
-        //btnViewAllType = (ImageView) view.findViewById(R.id.btn_view_all_type);
+        typeGrid = view.findViewById(R.id.type_grid);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_make_view_all:
-                loadTypeListScreen();
+                loadBrandListScreen(VEHICLE_BY_MAKE);
+                break;
+            case R.id.btn_type_view_all:
+                loadBrandListScreen(VEHICLE_BY_TYPE);
                 break;
         }
     }
 
-    private void loadTypeListScreen() {
-        FragmentUtils.addFragment(getActivity(), ExtendedListFragment.getInstance(ExtendedListFragment.BY_TYPE), "", true);
+    private void loadBrandListScreen(String category) {
+        FragmentUtils.addFragment(getActivity(), BrandListFragment.getInstance(BrandListFragment.BY_TYPE), "", true);
     }
 
-    private void loadMakeListScreen() {
-    }
 
-    public class StockAdapter extends BaseAdapter{
+    public class vehicleIdsAdapter extends BaseAdapter{
+        private List<VehicleIds.vehicle> itemList;
+        private LayoutInflater inflater;
+        private Resources resources;
 
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        Resources resources = getResources();
+        public vehicleIdsAdapter(List<VehicleIds.vehicle> itemList) {
+            this.itemList = itemList;
+            inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            resources = getResources();
+        }
 
         @Override
         public int getCount() {
-            return 8;
+            return itemList.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return itemList.get(position);
         }
 
         @Override
@@ -104,21 +127,20 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
         @Override
         public View getView(int position, View convertView, ViewGroup viewGroup) {
-            ImageView imageView;
-
-
+            ImageView brandImage;
             TextView tvName;
+
             if (convertView == null) {
                 // if it's not recycled, initialize some attributes
-               convertView = inflater.inflate(R.layout.layout_grid_item, viewGroup, false);
+                convertView = inflater.inflate(R.layout.layout_grid_item, viewGroup, false);
             }
 
-            imageView = convertView.findViewById(R.id.image);
-            tvName = convertView.findViewById(R.id.tv_name);
+            brandImage = convertView.findViewById(R.id.iv_brand_image);
+            tvName = convertView.findViewById(R.id.tv_brand_name);
 
-            StockId.StockItem item = MainActivity.stockIds.getList().get(position);
+            VehicleIds.vehicle item = itemList.get(position);
             final int resourceId = resources.getIdentifier(item.getName(), "drawable", getActivity().getPackageName());
-            imageView.setImageResource(resourceId);
+            brandImage.setImageResource(resourceId);
             tvName.setText(item.getName());
 
             return convertView;

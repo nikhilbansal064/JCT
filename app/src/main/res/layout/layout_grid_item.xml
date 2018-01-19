@@ -9,13 +9,13 @@
     android:background="@color/colorWhite">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/iv_brand_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"/>
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_brand_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="name"
