@@ -135,5 +135,53 @@
         </android.support.constraint.ConstraintLayout>
 
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+
+            <ImageView
+                android:id="@+id/btn_quick_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/quick_search"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <TextView
+                android:id="@+id/recent_view_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="RECENTLY VIEWED"
+                app:layout_constraintBottom_toTopOf="@+id/recent_grid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_quick_search" />
+
+
+            <GridView
+                android:id="@+id/recent_grid"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:numColumns="4"
+                android:horizontalSpacing="10dp"
+                android:verticalSpacing="10dp"
+                android:stretchMode="columnWidth"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recent_view_label" />
+        </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 </ScrollView>

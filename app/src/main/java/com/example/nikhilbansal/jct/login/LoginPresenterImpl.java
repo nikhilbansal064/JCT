@@ -24,7 +24,7 @@ public class LoginPresenterImpl implements loginInterface.ILoginPresenter {
         mInteractor.memberLogin(loginRequest, new ApiCallback() {
             @Override
             public void onSuccess(Object response) {
-                mView.loginSuccess((LoginResponse) response);
+                mView.loginSuccess();
             }
 
             @Override

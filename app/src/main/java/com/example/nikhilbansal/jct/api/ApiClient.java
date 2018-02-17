@@ -1,10 +1,9 @@
 package com.example.nikhilbansal.jct.api;
 
 import com.example.nikhilbansal.jct.CommonResponse;
-import com.example.nikhilbansal.jct.UserInfo;
+import com.example.nikhilbansal.jct.dealer_list.Model.DealerListResponse;
 import com.example.nikhilbansal.jct.forgot_password.model.ForgotPasswordResponse;
 import com.example.nikhilbansal.jct.login.model.LoginResponse;
-import com.example.nikhilbansal.jct.registration.model.RegistrationResponse;
 
 import java.util.Map;
 
@@ -25,7 +24,7 @@ public interface ApiClient {
 
     @FormUrlEncoded
     @POST("apl/ios/action.ios.apl.php")
-    Call<RegistrationResponse> register(@FieldMap Map<String, String> request);
+    Call<LoginResponse> register(@FieldMap Map<String, String> request);
 
     @FormUrlEncoded
     @POST("apl/ios/action.ios.apl.php")
@@ -42,4 +41,8 @@ public interface ApiClient {
     @FormUrlEncoded
     @POST("apl/ios/action.ios.apl.php")
     Call<CommonResponse> updateProfile(@FieldMap Map<String, String> requestMap);
+
+    @FormUrlEncoded
+    @POST("apl/ios/action.ios.apl.php")
+    Call<DealerListResponse> getDealerList(@FieldMap Map<String, String> requestMap);
 }

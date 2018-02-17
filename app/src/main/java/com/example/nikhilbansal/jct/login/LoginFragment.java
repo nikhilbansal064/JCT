@@ -1,6 +1,7 @@
 package com.example.nikhilbansal.jct.login;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.nikhilbansal.jct.BaseFragment;
 import com.example.nikhilbansal.jct.HomeFragment;
+import com.example.nikhilbansal.jct.MainActivity;
 import com.example.nikhilbansal.jct.R;
 import com.example.nikhilbansal.jct.UserInfo;
 import com.example.nikhilbansal.jct.constant.ApiConstants;
@@ -46,7 +48,7 @@ public class LoginFragment extends BaseFragment implements loginInterface.ILogin
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_login, container, false);
 
@@ -57,11 +59,11 @@ public class LoginFragment extends BaseFragment implements loginInterface.ILogin
     }
 
     private void initView() {
-        etLoginId =(EditText) view.findViewById(R.id.et_login_id);
-        etPassword =(EditText) view.findViewById(R.id.et_password);
-        tvRegistration =(TextView) view.findViewById(R.id.tv_register);
-        tvForgotPassword =(TextView) view.findViewById(R.id.tv_forgot_password);
-        btnLogin = (Button) view.findViewById(R.id.btn_login);
+        etLoginId = view.findViewById(R.id.et_login_id);
+        etPassword = view.findViewById(R.id.et_password);
+        tvRegistration = view.findViewById(R.id.tv_register);
+        tvForgotPassword = view.findViewById(R.id.tv_forgot_password);
+        btnLogin = view.findViewById(R.id.btn_login);
 
         tvRegistration.setOnClickListener(this);
         tvForgotPassword.setOnClickListener(this);
@@ -134,24 +136,13 @@ public class LoginFragment extends BaseFragment implements loginInterface.ILogin
     }
 
     @Override
-    public void loginSuccess(LoginResponse response) {
+    public void loginSuccess() {
         hideLoading();
-        Gson gson = new Gson();
-        String userDataStr = gson.toJson(response);
-        //save data to shared pref
-        saveUserData(userDataStr);
         //go to home page
         FragmentUtils.addFragment(getActivity(), HomeFragment.newInstance(), HomeFragment.class.getSimpleName(), true);
 
         //change content of drawer
-
-    }
-
-    private void saveUserData(String userData) {
-        SharePreferenceData sp = SharePreferenceData.getInstance();
-        sp.clearAll();
-        sp.saveBooleanValue(sp.KEY_USER_LOGGED_IN, true);
-        sp.saveString(sp.KEY_USER_DATA, userData);
+        MainActivity.loadNavigationMenu(R.menu.logged_in_user_navigation_menu);
     }
 
     @Override

@@ -1,8 +1,11 @@
 package com.example.nikhilbansal.jct.api;
 
+import android.support.annotation.NonNull;
+
 import com.example.nikhilbansal.jct.ApiCallback;
 import com.example.nikhilbansal.jct.CommonResponse;
 import com.example.nikhilbansal.jct.UserInfo;
+import com.example.nikhilbansal.jct.dealer_list.Model.DealerListResponse;
 import com.example.nikhilbansal.jct.forgot_password.model.ForgotPasswordResponse;
 import com.example.nikhilbansal.jct.constant.ApiConstants;
 import com.example.nikhilbansal.jct.login.model.LoginResponse;
@@ -26,8 +29,8 @@ public class ApiManagement {
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse = (LoginResponse) response.body();
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
                 String status = loginResponse.getStatus();
                 if(status.equalsIgnoreCase(ApiConstants.API_STATUS_SUCCESS)){
                     callback.onSuccess(loginResponse);
@@ -45,12 +48,12 @@ public class ApiManagement {
 
     public static void register(Map<String, String> requestMap, final ApiCallback callback){
 
-        Call<RegistrationResponse> call = apiClient.register(requestMap);
+        Call<LoginResponse> call = apiClient.register(requestMap);
 
-        call.enqueue(new Callback<RegistrationResponse>() {
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<RegistrationResponse> call, Response<RegistrationResponse> response) {
-                RegistrationResponse registrationResponse = (RegistrationResponse) response.body();
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse registrationResponse = (LoginResponse) response.body();
                 String status = registrationResponse.getStatus();
                 if(status.equalsIgnoreCase(ApiConstants.API_STATUS_SUCCESS)){
                     callback.onSuccess(registrationResponse);
@@ -60,7 +63,7 @@ public class ApiManagement {
             }
 
             @Override
-            public void onFailure(Call<RegistrationResponse> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 callback.onFailure(ApiConstants.API_URL_ERR_MSG);
             }
         });
@@ -153,6 +156,29 @@ public class ApiManagement {
 
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
+                callback.onFailure(ApiConstants.API_URL_ERR_MSG);
+            }
+        });
+    }
+
+    public static void getDealerList(Map<String, String> requestMap, final ApiCallback callback){
+        Call<DealerListResponse> call = apiClient.getDealerList(requestMap);
+
+        call.enqueue(new Callback<DealerListResponse>() {
+            @Override
+            public void onResponse(Call<DealerListResponse> call, Response<DealerListResponse> response) {
+                DealerListResponse dealerListResponse = (DealerListResponse) response.body();
+                String status = dealerListResponse.getStatus();
+                if(status.equalsIgnoreCase(ApiConstants.API_STATUS_SUCCESS)){
+                    callback.onSuccess(dealerListResponse);
+                }else {
+                    //callback.onFailure(dealerListResponse.getData().getMessage()); //need to change
+                    callback.onFailure("faliure");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DealerListResponse> call, Throwable t) {
                 callback.onFailure(ApiConstants.API_URL_ERR_MSG);
             }
         });

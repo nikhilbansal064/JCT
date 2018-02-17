@@ -13,10 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.nikhilbansal.jct.BaseFragment;
+import com.example.nikhilbansal.jct.HomeFragment;
+import com.example.nikhilbansal.jct.MainActivity;
 import com.example.nikhilbansal.jct.R;
 import com.example.nikhilbansal.jct.constant.ApiConstants;
 import com.example.nikhilbansal.jct.registration.model.RegistrationRequest;
 import com.example.nikhilbansal.jct.utils.DialogUtils;
+import com.example.nikhilbansal.jct.utils.FragmentUtils;
 import com.example.nikhilbansal.jct.utils.Utils;
 
 /**
@@ -46,26 +49,16 @@ public class RegistrationFragment extends BaseFragment implements RegistrationIn
         mPresenter = new RegistrationPresenterImpl(this);
         initViews();
 
-        spinnerSalutation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //String salutation  = getResources().getStringArray(R.array.salutation)[position];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
         return view;
     }
 
     private void initViews() {
 
-        etName = (EditText) view.findViewById(R.id.et_name);
-        etCountry = (EditText) view.findViewById(R.id.et_country);
-        etEmail = (EditText) view.findViewById(R.id.et_registration_email);
-        btnRegister = (Button) view.findViewById(R.id.btn_register);
-        spinnerSalutation = (AppCompatSpinner) view.findViewById(R.id.spinner_salutation);
+        etName = view.findViewById(R.id.et_name);
+        etCountry = view.findViewById(R.id.et_country);
+        etEmail = view.findViewById(R.id.et_registration_email);
+        btnRegister = view.findViewById(R.id.btn_register);
+        spinnerSalutation = view.findViewById(R.id.spinner_salutation);
 
         btnRegister.setOnClickListener(this);
 
@@ -80,6 +73,7 @@ public class RegistrationFragment extends BaseFragment implements RegistrationIn
         switch (v.getId()){
             case R.id.btn_register:
                 callRegistrationAPi();
+                break;
         }
     }
 
@@ -130,8 +124,11 @@ public class RegistrationFragment extends BaseFragment implements RegistrationIn
     @Override
     public void registrationSuccess(String  message) {
         hideLoading();
-        //update user info
-        // go to home
+        //go to home page
+        FragmentUtils.addFragment(getActivity(), HomeFragment.newInstance(), HomeFragment.class.getSimpleName(), true);
+
+        //change content of drawer
+        MainActivity.loadNavigationMenu(R.menu.logged_in_user_navigation_menu);
     }
 
     @Override

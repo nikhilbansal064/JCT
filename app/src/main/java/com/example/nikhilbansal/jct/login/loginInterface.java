@@ -12,7 +12,7 @@ import com.example.nikhilbansal.jct.login.model.LoginResponse;
 public interface loginInterface {
 
     public interface ILoginView{
-        public void loginSuccess(LoginResponse response);
+        public void loginSuccess();
         public void loginFailure(String failureMsg);
     }
 

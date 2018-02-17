@@ -13,17 +13,17 @@ public class VehicleIds {
 
     @SerializedName("list")
     @Expose
-    private ArrayList<vehicle> list;
+    private ArrayList<Vehicle> list;
 
-    public ArrayList<vehicle> getList() {
+    public ArrayList<Vehicle> getList() {
         return list;
     }
 
-    public void setList(ArrayList<vehicle> list) {
+    public void setList(ArrayList<Vehicle> list) {
         this.list = list;
     }
 
-    public class vehicle {
+    public class Vehicle {
         @SerializedName("id")
         @Expose
         private String id;

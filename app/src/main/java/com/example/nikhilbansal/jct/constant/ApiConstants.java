@@ -21,6 +21,7 @@ public class ApiConstants {
     public static String API_UPDATE_LOGIN_ID_ACTION = "UpdateMemberLoginID";
     public static String API_UPDATE_PASSWORD_ACTION = "UpdateMemberPassword";
     public static String API_UPDATE_PROFILE_ACTION = "UpdateMemberProfile";
+    public static String API_EX_IMP_LIST_ACTION = "ExpImpList";
 
     //login request param keys
 

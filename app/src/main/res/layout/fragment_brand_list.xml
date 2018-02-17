@@ -6,11 +6,52 @@
     android:padding="8dp"
     android:background="@color/colorGrayBg">
 
+    <RelativeLayout
+        android:id="@+id/make_category_switch_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <Button
+            android:id="@+id/btn_japanese_maker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Japanese Maker"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/selected_tab_left_bg"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <Button
+            android:id="@+id/btn_foreign_maker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btn_japanese_maker"
+            android:text="Foreign Maker"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@drawable/tab_right_bg"
+            style="?android:attr/borderlessButtonStyle"/>
+
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_brand_list"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/make_category_switch_container"
         android:background="@color/colorGrayBg"/>
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.nikhilbansal.jct.dealer_list.DealerListFragment;
 import com.example.nikhilbansal.jct.loginRegistration.LoginRegistrationFragment;
 import com.example.nikhilbansal.jct.utils.FragmentUtils;
 import com.example.nikhilbansal.jct.utils.SharePreferenceData;
@@ -25,7 +26,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private Toolbar mToolbar;
     private DrawerLayout drawer;
     private static NavigationView navigationView;
-    public static VehicleIds vehicleMakeIds;
+    public static VehicleIds vehicleJapaneseMakeIds;
+    public static VehicleIds vehicleForeignMakeIds;
     public static VehicleIds vehicleTypeIds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //get stock list from Assets
         ParseJsonFromAsset();
+
         //load home fragment
         HomeFragment homeFragment = HomeFragment.newInstance();
         FragmentUtils.addFragment(this, homeFragment, HomeFragment.class.getName(), true);
@@ -54,15 +57,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         byte[] buffer;
         Gson gson = new Gson();
         try {
-            //parse vehicle by make
-            inputStream = getAssets().open("vehicle_make_ids");
+            //parse Vehicle by japanese make
+            inputStream = getAssets().open("vehicle_japanese_make_ids");
             size = inputStream.available();
             buffer = new byte[size];
             inputStream.read(buffer);
             inputStream.close();
-            vehicleMakeIds = gson.fromJson(new String(buffer, "UTF-8"), VehicleIds.class);
+            vehicleJapaneseMakeIds = gson.fromJson(new String(buffer, "UTF-8"), VehicleIds.class);
 
-            //parse vehicle by make
+            //parse Vehicle by japanese make
+            inputStream = getAssets().open("vehicle_foreign_make_ids");
+            size = inputStream.available();
+            buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            vehicleForeignMakeIds = gson.fromJson(new String(buffer, "UTF-8"), VehicleIds.class);
+
+            //parse Vehicle by make
             inputStream = getAssets().open("vehicle_type_ids");
             size = inputStream.available();
             buffer = new byte[size];
@@ -93,9 +104,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void initializeViews() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        mToolbar = findViewById(R.id.toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView =  findViewById(R.id.nav_view);
     }
 
 
@@ -172,6 +183,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_log_in_or_register:
                 //load loginRegistration fragment
                 FragmentUtils.addFragment(this, LoginRegistrationFragment.newInstance(), LoginRegistrationFragment.class.getSimpleName(), true);
+                break;
+
+            case R.id.nav_japanese_exporters:
+                FragmentUtils.addFragment(this, DealerListFragment.newInstance(), DealerListFragment.class.getSimpleName(), true);
                 break;
         }
         drawer.closeDrawers();

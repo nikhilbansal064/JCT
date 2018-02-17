@@ -25,7 +25,7 @@ import java.util.List;
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private ImageView btnViewAllMake, btnViewAllType, btnQuickSearch;
-    private GridView makeGrid, typeGrid;
+    private GridView makeGrid, typeGrid, recentGrid;
     private View view;
 
     private static final String VEHICLE_BY_MAKE = "make";
@@ -45,25 +45,36 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         initViews();
         setProperties();
 
-        if(null != MainActivity.vehicleMakeIds && MainActivity.vehicleMakeIds.getList().size() > 0){
-            makeGrid.setAdapter(new vehicleIdsAdapter(MainActivity.vehicleMakeIds.getList().subList(0, HOME_MAKE_VEHICLE_COUNT)));
+        if(null != MainActivity.vehicleJapaneseMakeIds && MainActivity.vehicleJapaneseMakeIds.getList().size() > 0){
+            makeGrid.setAdapter(new vehicleIdsAdapter(MainActivity.vehicleJapaneseMakeIds.getList().subList(0, HOME_MAKE_VEHICLE_COUNT)));
         }
 
         if(null != MainActivity.vehicleTypeIds && MainActivity.vehicleTypeIds.getList().size() > 0){
             typeGrid.setAdapter(new vehicleIdsAdapter(MainActivity.vehicleTypeIds.getList().subList(0, HOME_TYPE_VEHICLE_COUNT)));
         }
 
+        //populate recent view grid
+
+
+        final BrandListAdapter.BrandItemClickListener itemClickListener = new BrandListAdapter.BrandItemClickListener() {
+            @Override
+            public void onItemClick(VehicleIds.Vehicle item) {
+                //call api
+                Toast.makeText(getActivity(), "item clicked" + item.getCategory(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
         makeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), "make item clicked", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+               itemClickListener.onItemClick(MainActivity.vehicleJapaneseMakeIds.getList().get(position));
             }
         });
 
         typeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), "type item clicked", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                itemClickListener.onItemClick(MainActivity.vehicleTypeIds.getList().get(position));
             }
         });
 
@@ -73,13 +84,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private void setProperties() {
         btnViewAllMake.setOnClickListener(this);
         btnViewAllType.setOnClickListener(this);
+        btnQuickSearch.setOnClickListener(this);
     }
 
     private void initViews() {
         btnViewAllMake = view.findViewById(R.id.btn_make_view_all);
         btnViewAllType = view.findViewById(R.id.btn_type_view_all);
+        btnQuickSearch = view.findViewById(R.id.btn_quick_search);
         makeGrid = view.findViewById(R.id.make_grid);
         typeGrid = view.findViewById(R.id.type_grid);
+        recentGrid = view.findViewById(R.id.recent_grid);
     }
 
     @Override
@@ -91,20 +105,23 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.btn_type_view_all:
                 loadBrandListScreen(VEHICLE_BY_TYPE);
                 break;
+
+            case R.id.btn_quick_search:
+                //
+                break;
         }
     }
 
     private void loadBrandListScreen(String category) {
-        FragmentUtils.addFragment(getActivity(), BrandListFragment.getInstance(BrandListFragment.BY_TYPE), "", true);
+        FragmentUtils.addFragment(getActivity(), BrandListFragment.getInstance(category), "", true);
     }
 
-
     public class vehicleIdsAdapter extends BaseAdapter{
-        private List<VehicleIds.vehicle> itemList;
+        private List<VehicleIds.Vehicle> itemList;
         private LayoutInflater inflater;
         private Resources resources;
 
-        public vehicleIdsAdapter(List<VehicleIds.vehicle> itemList) {
+        vehicleIdsAdapter(List<VehicleIds.Vehicle> itemList) {
             this.itemList = itemList;
             inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             resources = getResources();
@@ -138,7 +155,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             brandImage = convertView.findViewById(R.id.iv_brand_image);
             tvName = convertView.findViewById(R.id.tv_brand_name);
 
-            VehicleIds.vehicle item = itemList.get(position);
+            VehicleIds.Vehicle item = itemList.get(position);
             final int resourceId = resources.getIdentifier(item.getName(), "drawable", getActivity().getPackageName());
             brandImage.setImageResource(resourceId);
             tvName.setText(item.getName());
@@ -146,5 +163,4 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             return convertView;
         }
     }
-
 }
